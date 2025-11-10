@@ -37,15 +37,15 @@ p,ul{margin:8px 0;color:inherit;}
 .service-title{font-weight:700;margin-bottom:6px;}
 .service-desc{color:#cfcfcf;font-size:14px;}
 .contact .row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:10px;}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:8px;text-decoration:none;color:inherit;border:0;cursor:pointer;font-weight:700;background:var(--accent);color:#121212;transition:transform .18s;}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:8px;text-decoration:none;color:inherit;border:0;cursor:pointer;font-weight:700;background:var(--accent);color:#121212;transition:transform .18s;z-index:2001;}
 .btn:hover{transform:scale(1.05);}
-.btn-secondary{background:transparent;color:var(--accent);border:1px solid rgba(255,255,255,0.06);padding:8px 12px;border-radius:8px;font-weight:700;}
+.btn-secondary{background:transparent;color:var(--accent);border:1px solid rgba(255,255,255,0.06);padding:8px 12px;border-radius:8px;font-weight:700;z-index:2001;}
 footer{text-align:center;margin:30px 0 60px;color:#bdbdbd;}
 #policyModal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:2500;align-items:center;justify-content:center;padding:20px;}
 #policyContent{width:100%;max-width:820px;background:var(--dark-panel);border-radius:10px;padding:22px;color:#eaeaea;max-height:80vh;overflow:auto;box-shadow:0 10px 30px rgba(0,0,0,0.6);}
 #policyContent h3{color:var(--accent);margin-top:12px;}
-#modeToggle{position:fixed;right:18px;bottom:18px;z-index:2000;border:0;padding:10px 12px;border-radius:8px;cursor:pointer;background:var(--accent);color:#121212;font-weight:800;box-shadow:0 6px 18px rgba(0,0,0,0.4);}
-#backToTop{position:fixed;right:18px;bottom:80px;z-index:2000;border:0;padding:10px 12px;border-radius:8px;cursor:pointer;background:var(--accent);color:#121212;font-weight:700;display:none;box-shadow:0 6px 18px rgba(0,0,0,0.3);}
+#modeToggle{position:fixed;right:18px;bottom:18px;z-index:2001;border:0;padding:10px 12px;border-radius:8px;cursor:pointer;background:var(--accent);color:#121212;font-weight:800;box-shadow:0 6px 18px rgba(0,0,0,0.4);}
+#backToTop{position:fixed;right:18px;bottom:80px;z-index:2001;border:0;padding:10px 12px;border-radius:8px;cursor:pointer;background:var(--accent);color:#121212;font-weight:700;display:none;box-shadow:0 6px 18px rgba(0,0,0,0.3);}
 @media (max-width:720px){
   .service-card{width:100%;max-width:520px;}
   #langToggle{padding:8px 10px;font-size:14px;}
@@ -159,7 +159,6 @@ body.light-mode #modeToggle, body.light-mode #backToTop, body.light-mode .btn{ba
 </div>
 
 <script>
-// 三語翻譯及功能
 document.addEventListener("DOMContentLoaded",function(){
 const translations={
 "zh-HK":{
@@ -190,7 +189,7 @@ const translations={
 "contact-address":"📍 地址：香港",
 "policy-btn":"隐私政策 & 使用条款","privacy-title":"隐私政策","privacy-text":"本公司尊重您的隐私，承诺保护所有用户资料。当您使用我们的应用程序或网站时，我们可能会收集必要的信息，例如电子邮件、使用偏好或系统信息，用于提供更好的服务和改进产品。我们不会将个人资料出售或共享给第三方，除非法律要求或您明确同意。",
 "terms-title":"使用条款","term1":"不得使用本服务进行非法活动。","term2":"尊重知识产权，不得未经授权使用或传播本公司内容。","term3":"本公司保留随时修改或终止服务的权利。",
-"policyClose":"关闭","backTop":"⬆️ 返回顶部","mode-day":"☀️ 日间","mode-night":"🌙 夜间"
+"policyClose":"关闭","backTop":"⬆️ 返回顶部","mode-day":"☀️ 白天","mode-night":"🌙 夜间"
 },
 "en":{
 "intro-title":"Company Introduction","intro-text":"We are a tech company specializing in mobile app and game development, committed to providing innovative and high-quality digital entertainment experiences for users worldwide.",
@@ -210,11 +209,11 @@ const translations={
 
 let currentLang="zh-HK";
 function setLang(lang){
-currentLang=lang;
-for(const id in translations[lang]){
-const el=document.getElementById(id);
-if(el) el.innerText=translations[lang][id];
-}
+  currentLang=lang;
+  for(const id in translations[lang]){
+    const el=document.getElementById(id);
+    if(el) el.innerText=translations[lang][id];
+  }
 }
 
 // 語言切換
@@ -247,6 +246,7 @@ policyClose.addEventListener("click",()=>{policyModal.style.display="none";});
 const backBtn=document.getElementById("backToTop");
 window.addEventListener("scroll",()=>{backBtn.style.display=window.scrollY>200?"inline-block":"none";});
 backBtn.addEventListener("click",()=>{window.scrollTo({top:0,behavior:"smooth"});});
+});
 </script>
 </body>
 </html>
