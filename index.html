@@ -15,6 +15,7 @@
 html,body{height:100%;margin:0;padding:0;font-family:Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased;}
 body{transition:background-color .25s,color .25s;background:var(--dark-bg);color:#e0e0e0;}
 body.light-mode{background:var(--light-bg);color:#111;}
+body.light-mode p, body.light-mode li, body.light-mode .service-desc{color:#222;}
 .container{max-width:1000px;margin:36px auto;padding:0 16px;}
 header{position:relative;text-align:center;margin-bottom:18px;}
 .banner{width:100%;max-height:320px;object-fit:cover;border-radius:10px;display:block;margin:0 auto;z-index:1;}
@@ -64,7 +65,7 @@ body.light-mode #modeToggle, body.light-mode #backToTop, body.light-mode .btn{ba
 <header>
   <img src="banner.png" alt="Banner" class="banner" id="bannerImg">
   <div id="langDropdown">
-    <button id="langToggle">🌍 切換語言 ▼</button>
+    <button id="langToggle">🌍 切換語言</button>
     <div id="langOptions" role="menu" aria-hidden="true">
       <button class="lang-btn" data-lang="zh-HK">繁體</button>
       <button class="lang-btn" data-lang="zh-CN">简体</button>
@@ -182,7 +183,7 @@ const translations={
 "svc1-title":"移动应用开发","svc1-desc":"专业开发 iOS / Android 应用，支持 Swift、Kotlin、Unity 多平台架构。",
 "svc2-title":"网站与系统建设","svc2-desc":"企业网站、后台管理系统与云端部署整合，安全稳定。",
 "svc3-title":"云端技术支持","svc3-desc":"支持 AWS、Google Cloud、阿里云等环境配置与维护。",
-"svc4-title":"数据分析与优化","svc4-desc":"通过数据分析与 A/B 测试提升产品效率与用户体验。",
+"svc4-title":"数据分析与优化","svc4-desc":"通过数据分析与 A/B 测试提高产品效率与用户体验。",
 "svc5-title":"游戏与广告整合","svc5-desc":"提供游戏开发与穿山甲、Google AdMob 等广告 SDK 接入服务。",
 "svc6-title":"电子商务","svc6-desc":"主要运营网店以及全球代购服务，为用户提供便捷购物体验。",
 "contact-title":"联系我们","callText":"拨打电话","waText":"WhatsApp 联系我们","carText":"Carousell 商店",
@@ -246,9 +247,6 @@ policyClose.addEventListener("click",()=>{policyModal.style.display="none";});
 const backBtn=document.getElementById("backToTop");
 window.addEventListener("scroll",()=>{backBtn.style.display=window.scrollY>200?"inline-block":"none";});
 backBtn.addEventListener("click",()=>{window.scrollTo({top:0,behavior:"smooth"});});
-
-});
 </script>
-
 </body>
 </html>
