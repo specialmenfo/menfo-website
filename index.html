@@ -60,17 +60,34 @@ footer { text-align:center; padding:30px 20px; font-size:14px; transition: backg
 #policyModalContent p, #policyModalContent li { color:#e0e0e0; }
 #policyClose { display:block; text-align:center; margin-top:20px; padding:10px 15px; background:#4fc3f7; color:#121212; border:none; border-radius:5px; cursor:pointer; font-weight:bold; }
 
+/* 回到頂部按鈕 */
+#backToTop {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  display: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #4fc3f7;
+  color: #121212;
+  z-index: 1000;
+  transition: background-color 0.3s, color 0.3s;
+}
+
 /* 日間模式 */
 body.light-mode { background-color:#ffffff; color:#333333; }
 body.light-mode h2, body.light-mode h3 { color:#0073e6; }
-body.light-mode .button, body.light-mode #policyClose { background-color:#0073e6; color:#ffffff; }
+body.light-mode .button, body.light-mode #policyClose, body.light-mode #backToTop { background-color:#0073e6; color:#ffffff; }
 body.light-mode .service-card { background-color:#f7f7f7; color:#333; }
 body.light-mode .service-desc { color:#666; }
 body.light-mode footer { background-color:#f0f0f0; color:#666666; }
 /* 黑暗模式 */
 body.dark-mode { background-color:#121212; color:#e0e0e0; }
 body.dark-mode h2, body.dark-mode h3 { color:#4fc3f7; }
-body.dark-mode .button, body.dark-mode #policyClose { background-color:#4fc3f7; color:#121212; }
+body.dark-mode .button, body.dark-mode #policyClose, body.dark-mode #backToTop { background-color:#4fc3f7; color:#121212; }
 body.dark-mode footer { background-color:#1e1e1e; color:#888888; }
 
 /* 手機自適應 */
@@ -78,14 +95,14 @@ body.dark-mode footer { background-color:#1e1e1e; color:#888888; }
   .services-grid { flex-direction:column; gap:15px; }
   .service-card { max-width:100%; }
   .button { font-size:14px; padding:10px 20px;}
-  #modeToggle, #langSwitcher { padding:8px 12px; font-size:14px; }
+  #modeToggle, #langSwitcher, #backToTop { padding:8px 12px; font-size:14px; }
   #langSwitcher { top:10px; right:10px; }
 }
 </style>
 </head>
 <body>
 
-<!-- 語言切換 -->
+<!-- 語言切換豎排 -->
 <div id="langSwitcher">
   <button class="lang-btn active" data-lang="zh-HK">繁體</button>
   <button class="lang-btn" data-lang="zh-CN">简体</button>
@@ -161,6 +178,7 @@ body.dark-mode footer { background-color:#1e1e1e; color:#888888; }
 </footer>
 
 <button id="modeToggle">🌙 夜間</button>
+<button id="backToTop">⬆️ 回到頂部</button>
 
 <!-- 隱私政策彈窗 -->
 <div id="policyModal">
@@ -184,87 +202,101 @@ const modeToggle = document.getElementById('modeToggle');
 const body = document.body;
 function updateModeText() {
   const lang = document.querySelector('.lang-btn.active').getAttribute('data-lang');
-  const texts = {
-    "zh-HK": { day: "🌞 日間", night: "🌙 夜間" },
-    "zh-CN": { day: "🌞 日间", night: "🌙 夜间" },
-    "en": { day: "🌞 Day", night: "🌙 Night" }
-  };
+  const texts = { "zh-HK":{day:"🌞 日間", night:"🌙 夜間"}, "zh-CN":{day:"🌞 日间", night:"🌙 夜间"}, "en":{day:"🌞 Day", night:"🌙 Night"} };
   modeToggle.innerText = body.classList.contains('dark-mode') ? texts[lang].night : texts[lang].day;
 }
 if (window.matchMedia('(prefers-color-scheme: dark)').matches) { body.classList.add('dark-mode'); }
 else { body.classList.add('light-mode'); }
 updateModeText();
-modeToggle.addEventListener('click', () => {
-  body.classList.toggle('dark-mode');
-  body.classList.toggle('light-mode');
-  updateModeText();
-});
+modeToggle.addEventListener('click', () => { body.classList.toggle('dark-mode'); body.classList.toggle('light-mode'); updateModeText(); });
 
 // 隱私政策彈窗
 function openPolicy(){ document.getElementById('policyModal').style.display='block'; }
 function closePolicy(){ document.getElementById('policyModal').style.display='none'; }
 document.getElementById('policyClose').addEventListener('click', closePolicy);
 
+// 回到頂部
+const backBtn = document.getElementById('backToTop');
+window.addEventListener('scroll', () => { backBtn.style.display = (window.scrollY>200)?'block':'none'; });
+backBtn.addEventListener('click', () => { window.scrollTo({ top:0, behavior:'smooth' }); });
+
+// 回到頂部翻譯
+const backTexts = { "zh-HK":"⬆️ 回到頂部", "zh-CN":"⬆️ 回到顶部", "en":"⬆️ Back to Top" };
+function updateBackText(lang){ backBtn.innerText = backTexts[lang]; }
+
 // 三語切換
 const langButtons = document.querySelectorAll('.lang-btn');
 const translations = {
-  "zh-HK": { "intro-title":"公司簡介","intro-text":"我們是一家專注於行動應用與遊戲開發的科技公司，致力於為全球用戶提供創新與高品質的數位娛樂體驗。",
-    "services-title":"關於我們 · 服務項目","svc1-title":"行動應用開發","svc1-desc":"專業開發 iOS / Android 應用，支援 Swift、Kotlin、Unity 多平台架構。",
-    "svc2-title":"網站與系統建設","svc2-desc":"企業網站、後台管理系統與雲端部署整合，安全穩定。",
-    "svc3-title":"雲端技術支援","svc3-desc":"支援 AWS、Google Cloud、阿里雲等環境配置與維護。",
-    "svc4-title":"數據分析與優化","svc4-desc":"透過數據分析與A/B測試提升產品效率與用戶體驗。",
-    "svc5-title":"遊戲與廣告整合","svc5-desc":"提供遊戲開發與穿山甲、Google AdMob 等廣告SDK接入服務。",
-    "svc6-title":"電子商務","svc6-desc":"主要運營網店以及全球代購服務，為用戶提供便捷購物體驗。",
-    "contact-title":"聯絡我們","contact-phone":"☎️ +852-4613 7070","contact-wa":"💬 WhatsApp 聯絡我們","contact-email":"✉️ contact-yufunghk@menfo.men",
-    "contact-address":"📍 地址：香港","contact-carousell":"🛒 Carousell 商店",
-    "company-name-en":"YUFUNG (HK) NETWORK TECHNOLOGY CO., LIMITED","company-name-zh":"宇鋒（香港）網絡科技有限公司",
-    "policy-btn":"隱私政策 & 使用條款","policy-title":"隱私政策 & 使用條款","privacy-title":"隱私政策","privacy-text":"本公司尊重您的隱私，承諾保護所有用戶資料。當您使用我們的應用程式或網站時，我們可能會收集必要的資訊，例如電子郵件、使用偏好或系統資訊，用於提供更好的服務和改進產品。我們不會將個人資料出售或共享給第三方，除非法律要求或您明確同意。",
-    "terms-title":"使用條款","term1":"不得使用本服務進行非法活動。","term2":"尊重知識產權，不得未經授權使用或傳播本公司內容。","term3":"本公司保留隨時修改或終止服務的權利。"
-  },
-  "zh-CN": { "intro-title":"公司简介","intro-text":"我们是一家专注于移动应用与游戏开发的科技公司，致力于为全球用户提供创新与高品质的数字娱乐体验。",
-    "services-title":"关于我们 · 服务项目","svc1-title":"移动应用开发","svc1-desc":"专业开发 iOS / Android 应用，支持 Swift、Kotlin、Unity 多平台架构。",
-    "svc2-title":"网站与系统建设","svc2-desc":"企业网站、后台管理系统与云端部署整合，安全稳定。",
-    "svc3-title":"云端技术支持","svc3-desc":"支持 AWS、Google Cloud、阿里云等环境配置与维护。",
-    "svc4-title":"数据分析与优化","svc4-desc":"通过数据分析与A/B测试提升产品效率与用户体验。",
-    "svc5-title":"游戏与广告整合","svc5-desc":"提供游戏开发与穿山甲、Google AdMob 等广告SDK接入服务。",
-    "svc6-title":"电子商务","svc6-desc":"主要运营网店以及全球代购服务，为用户提供便捷购物体验。",
-    "contact-title":"联系我们","contact-phone":"☎️ +852-4613 7070","contact-wa":"💬 WhatsApp 联系我们","contact-email":"✉️ contact-yufunghk@menfo.men",
-    "contact-address":"📍 地址：香港","contact-carousell":"🛒 Carousell 商店",
-    "company-name-en":"YUFUNG (HK) NETWORK TECHNOLOGY CO., LIMITED","company-name-zh":"宇锋（香港）网络科技有限公司",
-    "policy-btn":"隐私政策 & 使用条款","policy-title":"隐私政策 & 使用条款","privacy-title":"隐私政策","privacy-text":"本公司尊重您的隐私，承诺保护所有用户资料。当您使用我们的应用程序或网站时，我们可能会收集必要的信息，例如电子邮件、使用偏好或系统信息，用于提供更好的服务和改进产品。我们不会将个人资料出售或共享给第三方，除非法律要求或您明确同意。",
-    "terms-title":"使用条款","term1":"不得使用本服务进行非法活动。","term2":"尊重知识产权，不得未经授权使用或传播本公司内容。","term3":"本公司保留随时修改或终止服务的权利。"
-  },
-  "en": { "intro-title":"Company Introduction","intro-text":"We are a technology company focused on mobile applications and game development, committed to providing innovative and high-quality digital entertainment experiences to users worldwide.",
-    "services-title":"About Us · Services","svc1-title":"Mobile App Development","svc1-desc":"Professional development of iOS / Android apps, supporting Swift, Kotlin, Unity multi-platform architectures.",
-    "svc2-title":"Website & System Development","svc2-desc":"Corporate websites, backend management systems, and cloud deployment integration, secure and stable.",
-    "svc3-title":"Cloud Support","svc3-desc":"Support for AWS, Google Cloud, Alibaba Cloud environments configuration and maintenance.",
-    "svc4-title":"Data Analysis & Optimization","svc4-desc":"Improve product efficiency and user experience through data analysis and A/B testing.",
-    "svc5-title":"Game & Ad Integration","svc5-desc":"Provide game development and ad SDK integration services such as Pangle and Google AdMob.",
-    "svc6-title":"E-commerce","svc6-desc":"Operate online stores and global purchasing services, providing users with convenient shopping experiences.",
-    "contact-title":"Contact Us","contact-phone":"☎️ +852-4613 7070","contact-wa":"💬 Contact via WhatsApp","contact-email":"✉️ contact-yufunghk@menfo.men",
-    "contact-address":"📍 Address: Hong Kong","contact-carousell":"🛒 Carousell Store",
-    "company-name-en":"YUFUNG (HK) NETWORK TECHNOLOGY CO., LIMITED","company-name-zh":"宇鋒（香港）網絡科技有限公司",
-    "policy-btn":"Privacy Policy & Terms","policy-title":"Privacy Policy & Terms","privacy-title":"Privacy Policy","privacy-text":"We respect your privacy and are committed to protecting all user data. When you use our apps or website, we may collect necessary information such as email, preferences, or system information to provide better services and improve products. We do not sell or share personal data with third parties unless required by law or explicitly agreed by you.",
-    "terms-title":"Terms of Use","term1":"Do not use this service for illegal activities.","term2":"Respect intellectual property rights, and do not use or distribute our content without authorization.","term3":"The company reserves the right to modify or terminate services at any time."
-  }
+"zh-HK": {
+"intro-title":"公司簡介","intro-text":"我們是一家專注於行動應用與遊戲開發的科技公司，致力於為全球用戶提供創新與高品質的數位娛樂體驗。",
+"services-title":"關於我們 · 服務項目",
+"svc1-title":"行動應用開發","svc1-desc":"專業開發 iOS / Android 應用，支援 Swift、Kotlin、Unity 多平台架構。",
+"svc2-title":"網站與系統建設","svc2-desc":"企業網站、後台管理系統與雲端部署整合，安全穩定。",
+"svc3-title":"雲端技術支援","svc3-desc":"支援 AWS、Google Cloud、阿里雲等環境配置與維護。",
+"svc4-title":"數據分析與優化","svc4-desc":"透過數據分析與A/B測試提升產品效率與用戶體驗。",
+"svc5-title":"遊戲與廣告整合","svc5-desc":"提供遊戲開發與穿山甲、Google AdMob 等廣告SDK接入服務。",
+"svc6-title":"電子商務","svc6-desc":"主要運營網店以及全球代購服務，為用戶提供便捷購物體驗。",
+"contact-title":"聯絡我們","contact-phone":"☎️ +852-4613 7070",
+"contact-wa":"💬 WhatsApp 聯絡我們",
+"contact-email":"✉️ contact-yufunghk@menfo.men",
+"contact-address":"📍 地址：香港","contact-carousell":"🛒 Carousell 商店",
+"company-name-en":"YUFUNG (HK) NETWORK TECHNOLOGY CO., LIMITED","company-name-zh":"宇鋒（香港）網絡科技有限公司",
+"policy-btn":"隱私政策 & 使用條款","policy-title":"隱私政策 & 使用條款",
+"privacy-title":"隱私政策",
+"privacy-text":"本公司尊重您的隱私，承諾保護所有用戶資料。當您使用我們的應用程式或網站時，我們可能會收集必要的資訊，例如電子郵件、使用偏好或系統資訊，用於提供更好的服務和改進產品。我們不會將個人資料出售或共享給第三方，除非法律要求或您明確同意。",
+"terms-title":"使用條款","term1":"不得使用本服務進行非法活動。","term2":"尊重知識產權，不得未經授權使用或傳播本公司內容。","term3":"本公司保留隨時修改或終止服務的權利。"
+},
+"zh-CN": {
+"intro-title":"公司简介","intro-text":"我们是一家专注于移动应用与游戏开发的科技公司，致力于为全球用户提供创新与高品质的数字娱乐体验。",
+"services-title":"关于我们 · 服务项目",
+"svc1-title":"移动应用开发","svc1-desc":"专业开发 iOS / Android 应用，支持 Swift、Kotlin、Unity 多平台架构。",
+"svc2-title":"网站与系统建设","svc2-desc":"企业网站、后台管理系统与云端部署整合，安全稳定。",
+"svc3-title":"云端技术支持","svc3-desc":"支持 AWS、Google Cloud、阿里云等环境配置与维护。",
+"svc4-title":"数据分析与优化","svc4-desc":"通过数据分析与A/B测试提升产品效率与用户体验。",
+"svc5-title":"游戏与广告整合","svc5-desc":"提供游戏开发与穿山甲、Google AdMob 等广告SDK接入服务。",
+"svc6-title":"电子商务","svc6-desc":"主要运营网店以及全球代购服务，为用户提供便捷购物体验。",
+"contact-title":"联系我们","contact-phone":"☎️ +852-4613 7070",
+"contact-wa":"💬 WhatsApp 联系我们",
+"contact-email":"✉️ contact-yufunghk@menfo.men",
+"contact-address":"📍 地址：香港","contact-carousell":"🛒 Carousell 商店",
+"company-name-en":"YUFUNG (HK) NETWORK TECHNOLOGY CO., LIMITED","company-name-zh":"宇锋（香港）网络科技有限公司",
+"policy-btn":"隐私政策 & 使用条款","policy-title":"隐私政策 & 使用条款",
+"privacy-title":"隐私政策",
+"privacy-text":"本公司尊重您的隐私，承诺保护所有用户资料。当您使用我们的应用程序或网站时，我们可能会收集必要的信息，例如电子邮件、使用偏好或系统信息，用于提供更好的服务和改进产品。我们不会将个人资料出售或共享给第三方，除非法律要求或您明确同意。",
+"terms-title":"使用条款","term1":"不得使用本服务进行非法活动。","term2":"尊重知识产权，不得未经授权使用或传播本公司内容。","term3":"本公司保留随时修改或终止服务的权利。"
+},
+"en": {
+"intro-title":"Company Introduction","intro-text":"We are a technology company focused on mobile apps and game development, dedicated to providing innovative and high-quality digital entertainment experiences worldwide.",
+"services-title":"About Us · Services",
+"svc1-title":"Mobile App Development","svc1-desc":"Professional development of iOS / Android apps, supporting Swift, Kotlin, Unity multi-platform architecture.",
+"svc2-title":"Website & System Development","svc2-desc":"Corporate websites, backend management systems, and cloud deployment integration, secure and stable.",
+"svc3-title":"Cloud Support","svc3-desc":"Support for AWS, Google Cloud, Alibaba Cloud configuration and maintenance.",
+"svc4-title":"Data Analysis & Optimization","svc4-desc":"Improve product efficiency and user experience through data analysis and A/B testing.",
+"svc5-title":"Game & Ads Integration","svc5-desc":"Provide game development and Pangle/AdMob SDK integration services.",
+"svc6-title":"E-commerce","svc6-desc":"Mainly operate online stores and global purchasing services, providing users with convenient shopping experience.",
+"contact-title":"Contact Us","contact-phone":"☎️ +852-4613 7070",
+"contact-wa":"💬 WhatsApp Contact Us","contact-email":"✉️ contact-yufunghk@menfo.men",
+"contact-address":"📍 Address: Hong Kong","contact-carousell":"🛒 Carousell Shop",
+"company-name-en":"YUFUNG (HK) NETWORK TECHNOLOGY CO., LIMITED","company-name-zh":"YUFUNG (HK) NETWORK TECHNOLOGY CO., LIMITED",
+"policy-btn":"Privacy Policy & Terms","policy-title":"Privacy Policy & Terms",
+"privacy-title":"Privacy Policy",
+"privacy-text":"We respect your privacy and are committed to protecting all user data. When you use our apps or website, we may collect necessary information such as email, preferences, or system information to provide better services and improve products. We will not sell or share personal data to third parties unless required by law or with your explicit consent.",
+"terms-title":"Terms of Use","term1":"Do not use our services for illegal activities.","term2":"Respect intellectual property rights and do not use or distribute company content without authorization.","term3":"We reserve the right to modify or terminate services at any time."
+}
 };
 
-function switchLanguage(lang) {
-  document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+function switchLanguage(lang){
+  langButtons.forEach(btn=>btn.classList.remove('active'));
   document.querySelector(`.lang-btn[data-lang="${lang}"]`).classList.add('active');
   document.querySelector('html').lang = lang;
-
   for(const id in translations[lang]){
     const el = document.getElementById(id);
-    if(el){ 
-      if(el.tagName.toLowerCase() === "input" || el.tagName.toLowerCase() === "textarea") el.value = translations[lang][id];
-      else el.innerText = translations[lang][id];
-    }
+    if(el){ el.innerText = translations[lang][id]; }
   }
   updateModeText();
+  updateBackText(lang);
 }
-
-langButtons.forEach(btn => btn.addEventListener('click', ()=> switchLanguage(btn.getAttribute('data-lang'))));
+langButtons.forEach(btn=>btn.addEventListener('click',()=>switchLanguage(btn.getAttribute('data-lang'))));
 </script>
 
 </body>
