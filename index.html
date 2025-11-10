@@ -14,51 +14,36 @@
 }
 html,body{height:100%;margin:0;padding:0;font-family:Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased;}
 body{transition:background-color .25s,color .25s;background:var(--dark-bg);color:#e0e0e0;}
+body.light-mode{background:var(--light-bg);color:#222;}
 .container{max-width:1000px;margin:36px auto;padding:0 16px;}
 header{position:relative;text-align:center;margin-bottom:18px;}
 .banner{width:100%;max-height:320px;object-fit:cover;border-radius:10px;display:block;margin:0 auto;}
 #company-name-en{font-weight:700;margin-top:10px;font-size:18px;}
 #company-name-zh{font-weight:700;margin-top:4px;font-size:16px;color:#cfcfcf;}
-
-/* language dropdown */
 #langDropdown{position:absolute;top:12px;right:12px;z-index:1200;}
 #langToggle{background:rgba(0,0,0,0.45);color:#fff;border:0;padding:8px 12px;border-radius:6px;cursor:pointer;font-weight:700;}
 #langToggle:after{content:" ▼";font-weight:600;margin-left:6px;}
 #langOptions{display:none;position:absolute;top:44px;right:0;background:var(--accent);border-radius:8px;padding:6px;box-shadow:0 6px 18px rgba(0,0,0,0.4);min-width:130px;}
 #langOptions button{display:block;width:100%;text-align:left;background:#fff;color:#111;border:0;padding:8px 10px;margin:6px 0;border-radius:6px;cursor:pointer;font-weight:600;}
 #langOptions button.active{background:#e8f9ff;}
-
-/* main */
 h2{text-align:center;margin:18px 0;color:var(--accent);}
 .intro,.services,.contact{text-align:center;margin-bottom:26px;}
 p{margin:8px 0;color:inherit;}
-
-/* services grid */
 .services-grid{display:flex;flex-wrap:wrap;gap:20px;justify-content:center;margin-top:12px;}
 .service-card{background:rgba(255,255,255,0.03);border-radius:10px;padding:18px;width:260px;box-sizing:border-box;transition:transform .18s,background .18s;text-align:left;}
 .service-card:hover{transform:translateY(-6px);background:rgba(255,255,255,0.06);}
 .service-icon{font-size:32px;margin-bottom:8px;}
 .service-title{font-weight:700;margin-bottom:6px;}
 .service-desc{color:#cfcfcf;font-size:14px;}
-
-/* contact buttons */
 .contact .row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:10px;}
 .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:8px;text-decoration:none;color:inherit;border:0;cursor:pointer;font-weight:700;background:var(--accent);color:#121212;}
 .btn-secondary{background:transparent;color:var(--accent);border:1px solid rgba(255,255,255,0.06);padding:8px 12px;border-radius:8px;font-weight:700;}
-a.btn{text-decoration:none;}
-
 footer{text-align:center;margin:30px 0 60px;color:#bdbdbd;}
-
-/* policy modal */
 #policyModal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:1500;align-items:center;justify-content:center;padding:20px;}
 #policyContent{width:100%;max-width:820px;background:var(--dark-panel);border-radius:10px;padding:22px;color:#eaeaea;max-height:80vh;overflow:auto;box-shadow:0 10px 30px rgba(0,0,0,0.6);}
 #policyContent h3{color:var(--accent);margin-top:12px;}
-
-/* mode toggle and back */
 #modeToggle{position:fixed;right:18px;bottom:18px;z-index:1400;border:0;padding:10px 12px;border-radius:8px;cursor:pointer;background:var(--accent);color:#121212;font-weight:800;box-shadow:0 6px 18px rgba(0,0,0,0.4);}
 #backToTop{position:fixed;right:18px;bottom:80px;z-index:1400;border:0;padding:10px 12px;border-radius:8px;cursor:pointer;background:var(--accent);color:#121212;font-weight:700;display:none;box-shadow:0 6px 18px rgba(0,0,0,0.3);}
-
-/* responsiveness */
 @media (max-width:720px){
   .service-card{width:100%;max-width:520px;}
   #langToggle{padding:8px 10px;font-size:14px;}
@@ -66,9 +51,6 @@ footer{text-align:center;margin:30px 0 60px;color:#bdbdbd;}
   header{padding:0 12px;}
   .banner{border-radius:8px;}
 }
-
-/* light mode overrides */
-body.light-mode{background:var(--light-bg);color:#222;}
 body.light-mode .service-card{background:var(--light-panel);}
 body.light-mode #langToggle{background:rgba(255,255,255,0.9);color:#111;}
 body.light-mode #langOptions{background:var(--accent);}
@@ -169,7 +151,7 @@ body.light-mode #modeToggle, body.light-mode #backToTop, body.light-mode .btn{ba
       <li id="term3">本公司保留隨時修改或終止服務的權利。</li>
     </ul>
     <div style="text-align:center;margin-top:16px;">
-      <button id="policyClose" class="btn-secondary">關閉 / Close / 关闭</button>
+      <button id="policyClose" class="btn-secondary">關閉</button>
     </div>
   </div>
 </div>
@@ -188,9 +170,9 @@ const translations={
 "svc6-title":"電子商務","svc6-desc":"主要運營網店以及全球代購服務，為用戶提供便捷購物體驗。",
 "contact-title":"聯絡我們","callText":"撥打電話","waText":"WhatsApp 聯絡我們","carText":"Carousell 商店",
 "contact-address":"📍 地址：香港",
-"policy-btn":"隱私政策 & 使用條款",
-"mode-day":"☀️ 日間","mode-night":"🌙 夜間",
-"backTop":"⬆️ 回到頂部","policyClose":"關閉"
+"policy-btn":"隱私政策 & 使用條款","privacy-title":"隱私政策","privacy-text":"本公司尊重您的隱私，承諾保護所有用戶資料。當您使用我們的應用程式或網站時，我們可能會收集必要的資訊，例如電子郵件、使用偏好或系統資訊，用於提供更好的服務和改進產品。我們不會將個人資料出售或共享給第三方，除非法律要求或您明確同意。",
+"terms-title":"使用條款","term1":"不得使用本服務進行非法活動。","term2":"尊重知識產權，不得未經授權使用或傳播本公司內容。","term3":"本公司保留隨時修改或終止服務的權利。",
+"policyClose":"關閉","backTop":"⬆️ 回到頂部","mode-day":"☀️ 日間","mode-night":"🌙 夜間"
 },
 "zh-CN":{
 "intro-title":"公司简介","intro-text":"我们是一家专注于移动应用与游戏开发的科技公司，致力于为全球用户提供创新与高品质的数字娱乐体验。",
@@ -203,63 +185,28 @@ const translations={
 "svc6-title":"电子商务","svc6-desc":"主要运营网店以及全球代购服务，为用户提供便捷购物体验。",
 "contact-title":"联系我们","callText":"拨打电话","waText":"WhatsApp 联系我们","carText":"Carousell 商店",
 "contact-address":"📍 地址：香港",
-"policy-btn":"隐私政策 & 使用条款",
-"mode-day":"☀️ 日间","mode-night":"🌙 夜间",
-"backTop":"⬆️ 返回顶部","policyClose":"关闭"
+"policy-btn":"隐私政策 & 使用条款","privacy-title":"隐私政策","privacy-text":"本公司尊重您的隐私，承诺保护所有用户资料。当您使用我们的应用程序或网站时，我们可能会收集必要的信息，例如电子邮件、使用偏好或系统信息，用于提供更好的服务和改进产品。我们不会将个人资料出售或共享给第三方，除非法律要求或您明确同意。",
+"terms-title":"使用条款","term1":"不得使用本服务进行非法活动。","term2":"尊重知识产权，不得未经授权使用或传播本公司内容。","term3":"本公司保留随时修改或终止服务的权利。",
+"policyClose":"关闭","backTop":"⬆️ 返回顶部","mode-day":"☀️ 日间","mode-night":"🌙 夜间"
 },
 "en":{
-"intro-title":"Company Profile","intro-text":"We are a technology company focusing on mobile app and game development, dedicated to providing innovative and high-quality digital entertainment experiences worldwide.",
+"intro-title":"Company Introduction","intro-text":"We are a tech company specializing in mobile app and game development, committed to providing innovative and high-quality digital entertainment experiences for users worldwide.",
 "services-title":"About Us · Services",
-"svc1-title":"Mobile App Development","svc1-desc":"Professional development for iOS / Android apps, supporting Swift, Kotlin, Unity multi-platform architecture.",
-"svc2-title":"Website & System Development","svc2-desc":"Enterprise websites, backend systems, and cloud deployment integration, secure and stable.",
-"svc3-title":"Cloud Support","svc3-desc":"Support for AWS, Google Cloud, Alibaba Cloud configuration and maintenance.",
-"svc4-title":"Data Analysis & Optimization","svc4-desc":"Improve product efficiency and user experience via data analysis and A/B testing.",
-"svc5-title":"Game & Ads Integration","svc5-desc":"Provide game development and ad SDK integration services (Pangle, Google AdMob, etc.).",
-"svc6-title":"E-commerce","svc6-desc":"Operate online stores and global purchasing services, providing convenient shopping experience.",
+"svc1-title":"Mobile App Development","svc1-desc":"Professional development for iOS / Android apps, supporting Swift, Kotlin, Unity multi-platform frameworks.",
+"svc2-title":"Website & System Development","svc2-desc":"Corporate websites, backend systems, and cloud deployment integration, secure and stable.",
+"svc3-title":"Cloud Support","svc3-desc":"Supports AWS, Google Cloud, Alibaba Cloud environment configuration and maintenance.",
+"svc4-title":"Data Analysis & Optimization","svc4-desc":"Improve product efficiency and user experience through data analysis and A/B testing.",
+"svc5-title":"Game & Ad Integration","svc5-desc":"Provide game development and SDK integration services for Pangle, Google AdMob, etc.",
+"svc6-title":"E-Commerce","svc6-desc":"Mainly operating online stores and global purchasing services, providing convenient shopping experience.",
 "contact-title":"Contact Us","callText":"Call","waText":"WhatsApp Contact","carText":"Carousell Store",
 "contact-address":"📍 Address: Hong Kong",
-"policy-btn":"Privacy Policy & Terms",
-"mode-day":"☀️ Day","mode-night":"🌙 Night",
-"backTop":"⬆️ Back to top","policyClose":"Close"
+"policy-btn":"Privacy Policy & Terms","privacy-title":"Privacy Policy","privacy-text":"We respect your privacy and commit to protecting all user data. When using our app or website, we may collect necessary information such as email, usage preferences, or system information to provide better service and improve our products. We do not sell or share personal data with third parties unless required by law or with your explicit consent.",
+"terms-title":"Terms of Use","term1":"Do not use this service for illegal activities.","term2":"Respect intellectual property; do not use or distribute our content without authorization.","term3":"We reserve the right to modify or terminate services at any time.",
+"policyClose":"Close","backTop":"⬆️ Back to Top","mode-day":"☀️ Day","mode-night":"🌙 Night"
 }};
 
 let currentLang="zh-HK";
-const setLang=(lang)=>{
+function setLang(lang){
 currentLang=lang;
 for(const id in translations[lang]){
-const el=document.getElementById(id);
-if(el) el.innerText=translations[lang][id];
-}
-};
-
-// 語言切換
-const langToggle=document.getElementById("langToggle");
-const langOptions=document.getElementById("langOptions");
-langToggle.addEventListener("click",()=>{langOptions.style.display=langOptions.style.display==="block"?"none":"block";});
-document.querySelectorAll(".lang-btn").forEach(btn=>{
-btn.addEventListener("click",()=>{setLang(btn.dataset.lang);langOptions.style.display="none";});
-});
-
-// 日夜模式
-const modeBtn=document.getElementById("modeToggle");
-modeBtn.addEventListener("click",()=>{
-document.body.classList.toggle("light-mode");
-modeBtn.innerText=document.body.classList.contains("light-mode")?translations[currentLang]["mode-day"]:translations[currentLang]["mode-night"];
-});
-
-// 彈窗政策
-const policyBtn=document.getElementById("policy-btn");
-const policyModal=document.getElementById("policyModal");
-const policyClose=document.getElementById("policyClose");
-policyBtn.addEventListener("click",()=>{policyModal.style.display="flex";});
-policyClose.addEventListener("click",()=>{policyModal.style.display="none";});
-
-// 返回頂部
-const backBtn=document.getElementById("backToTop");
-window.addEventListener("scroll",()=>{backBtn.style.display=window.scrollY>200?"inline-block":"none";});
-backBtn.addEventListener("click",()=>{window.scrollTo({top:0,behavior:"smooth"});});
-
-});
-</script>
-</body>
-</html>
+const
