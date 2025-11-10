@@ -175,71 +175,76 @@ body.light-mode #modeToggle, body.light-mode #backToTop, body.light-mode .btn{ba
 </div>
 
 <script>
-// —— JS 行為
 document.addEventListener("DOMContentLoaded",function(){
-
-// 三語翻譯
-const translations = {
-  "zh-HK": {
-    "intro-title":"公司簡介","intro-text":"我們是一家專注於行動應用與遊戲開發的科技公司，致力於為全球用戶提供創新與高品質的數位娛樂體驗。",
-    "services-title":"關於我們 · 服務項目",
-    "svc1-title":"行動應用開發","svc1-desc":"專業開發 iOS / Android 應用，支援 Swift、Kotlin、Unity 多平台架構。",
-    "svc2-title":"網站與系統建設","svc2-desc":"企業網站、後台管理系統與雲端部署整合，安全穩定。",
-    "svc3-title":"雲端技術支援","svc3-desc":"支援 AWS、Google Cloud、阿里雲等環境配置與維護。",
-    "svc4-title":"數據分析與優化","svc4-desc":"透過數據分析與 A/B 測試提升產品效率與用戶體驗。",
-    "svc5-title":"遊戲與廣告整合","svc5-desc":"提供遊戲開發與穿山甲、Google AdMob 等廣告 SDK 接入服務。",
-    "svc6-title":"電子商務","svc6-desc":"主要運營網店以及全球代購服務，為用戶提供便捷購物體驗。",
-    "contact-title":"聯絡我們","callText":"撥打電話","waText":"WhatsApp 聯絡我們","carText":"Carousell 商店",
-    "policy-btn":"隱私政策 & 使用條款"
-  },
-  "zh-CN": {
-    "intro-title":"公司简介","intro-text":"我们是一家专注于移动应用与游戏开发的科技公司，致力于为全球用户提供创新与高品质的数字娱乐体验。",
-    "services-title":"关于我们 · 服务项目",
-    "svc1-title":"移动应用开发","svc1-desc":"专业开发 iOS / Android 应用，支持 Swift、Kotlin、Unity 多平台架构。",
-    "svc2-title":"网站与系统建设","svc2-desc":"企业网站、后台管理系统与云端部署整合，安全稳定。",
-    "svc3-title":"云端技术支持","svc3-desc":"支持 AWS、Google Cloud、阿里云等环境配置与维护。",
-    "svc4-title":"数据分析与优化","svc4-desc":"通过数据分析与 A/B 测试提升产品效率与用户体验。",
-    "svc5-title":"游戏与广告整合","svc5-desc":"提供游戏开发与穿山甲、Google AdMob 等广告 SDK 接入服务。",
-    "svc6-title":"电子商务","svc6-desc":"主要运营网店以及全球代购服务，为用户提供便捷购物体验。",
-    "contact-title":"联系我们","callText":"拨打电话","waText":"WhatsApp 联系我们","carText":"Carousell 商店",
-    "policy-btn":"隐私政策 & 使用条款"
-  },
-  "en": {
-    "intro-title":"Company Profile","intro-text":"We are a technology company focusing on mobile app and game development, dedicated to providing innovative and high-quality digital entertainment experiences worldwide.",
-    "services-title":"About Us · Services",
-    "svc1-title":"Mobile App Development","svc1-desc":"Professional development for iOS / Android apps, supporting Swift, Kotlin, Unity multi-platform architecture.",
-    "svc2-title":"Website & System Development","svc2-desc":"Enterprise websites, backend systems, and cloud deployment integration, secure and stable.",
-    "svc3-title":"Cloud Support","svc3-desc":"Support for AWS, Google Cloud, Alibaba Cloud configuration and maintenance.",
-    "svc4-title":"Data Analysis & Optimization","svc4-desc":"Improve product efficiency and user experience via data analysis and A/B testing.",
-    "svc5-title":"Game & Ads Integration","svc5-desc":"Provide game development and ad SDK integration services (Pangle, Google AdMob, etc.).",
-    "svc6-title":"E-commerce","svc6-desc":"Operate online stores and global purchasing services, providing convenient shopping experience.",
-    "contact-title":"Contact Us","callText":"Call","waText":"WhatsApp Contact","carText":"Carousell Store",
-    "policy-btn":"Privacy Policy & Terms"
-  }
-};
+const translations={
+"zh-HK":{
+"intro-title":"公司簡介","intro-text":"我們是一家專注於行動應用與遊戲開發的科技公司，致力於為全球用戶提供創新與高品質的數位娛樂體驗。",
+"services-title":"關於我們 · 服務項目",
+"svc1-title":"行動應用開發","svc1-desc":"專業開發 iOS / Android 應用，支援 Swift、Kotlin、Unity 多平台架構。",
+"svc2-title":"網站與系統建設","svc2-desc":"企業網站、後台管理系統與雲端部署整合，安全穩定。",
+"svc3-title":"雲端技術支援","svc3-desc":"支援 AWS、Google Cloud、阿里雲等環境配置與維護。",
+"svc4-title":"數據分析與優化","svc4-desc":"透過數據分析與 A/B 測試提升產品效率與用戶體驗。",
+"svc5-title":"遊戲與廣告整合","svc5-desc":"提供遊戲開發與穿山甲、Google AdMob 等廣告 SDK 接入服務。",
+"svc6-title":"電子商務","svc6-desc":"主要運營網店以及全球代購服務，為用戶提供便捷購物體驗。",
+"contact-title":"聯絡我們","callText":"撥打電話","waText":"WhatsApp 聯絡我們","carText":"Carousell 商店",
+"contact-address":"📍 地址：香港",
+"policy-btn":"隱私政策 & 使用條款",
+"mode-day":"☀️ 日間","mode-night":"🌙 夜間",
+"backTop":"⬆️ 回到頂部","policyClose":"關閉"
+},
+"zh-CN":{
+"intro-title":"公司简介","intro-text":"我们是一家专注于移动应用与游戏开发的科技公司，致力于为全球用户提供创新与高品质的数字娱乐体验。",
+"services-title":"关于我们 · 服务项目",
+"svc1-title":"移动应用开发","svc1-desc":"专业开发 iOS / Android 应用，支持 Swift、Kotlin、Unity 多平台架构。",
+"svc2-title":"网站与系统建设","svc2-desc":"企业网站、后台管理系统与云端部署整合，安全稳定。",
+"svc3-title":"云端技术支持","svc3-desc":"支持 AWS、Google Cloud、阿里云等环境配置与维护。",
+"svc4-title":"数据分析与优化","svc4-desc":"通过数据分析与 A/B 测试提升产品效率与用户体验。",
+"svc5-title":"游戏与广告整合","svc5-desc":"提供游戏开发与穿山甲、Google AdMob 等广告 SDK 接入服务。",
+"svc6-title":"电子商务","svc6-desc":"主要运营网店以及全球代购服务，为用户提供便捷购物体验。",
+"contact-title":"联系我们","callText":"拨打电话","waText":"WhatsApp 联系我们","carText":"Carousell 商店",
+"contact-address":"📍 地址：香港",
+"policy-btn":"隐私政策 & 使用条款",
+"mode-day":"☀️ 日间","mode-night":"🌙 夜间",
+"backTop":"⬆️ 返回顶部","policyClose":"关闭"
+},
+"en":{
+"intro-title":"Company Profile","intro-text":"We are a technology company focusing on mobile app and game development, dedicated to providing innovative and high-quality digital entertainment experiences worldwide.",
+"services-title":"About Us · Services",
+"svc1-title":"Mobile App Development","svc1-desc":"Professional development for iOS / Android apps, supporting Swift, Kotlin, Unity multi-platform architecture.",
+"svc2-title":"Website & System Development","svc2-desc":"Enterprise websites, backend systems, and cloud deployment integration, secure and stable.",
+"svc3-title":"Cloud Support","svc3-desc":"Support for AWS, Google Cloud, Alibaba Cloud configuration and maintenance.",
+"svc4-title":"Data Analysis & Optimization","svc4-desc":"Improve product efficiency and user experience via data analysis and A/B testing.",
+"svc5-title":"Game & Ads Integration","svc5-desc":"Provide game development and ad SDK integration services (Pangle, Google AdMob, etc.).",
+"svc6-title":"E-commerce","svc6-desc":"Operate online stores and global purchasing services, providing convenient shopping experience.",
+"contact-title":"Contact Us","callText":"Call","waText":"WhatsApp Contact","carText":"Carousell Store",
+"contact-address":"📍 Address: Hong Kong",
+"policy-btn":"Privacy Policy & Terms",
+"mode-day":"☀️ Day","mode-night":"🌙 Night",
+"backTop":"⬆️ Back to top","policyClose":"Close"
+}};
 
 let currentLang="zh-HK";
 const setLang=(lang)=>{
-  currentLang=lang;
-  for(const id in translations[lang]){
-    const el=document.getElementById(id);
-    if(el) el.innerText=translations[lang][id];
-  }
+currentLang=lang;
+for(const id in translations[lang]){
+const el=document.getElementById(id);
+if(el) el.innerText=translations[lang][id];
+}
 };
 
-// 語言切換按鈕
+// 語言切換
 const langToggle=document.getElementById("langToggle");
 const langOptions=document.getElementById("langOptions");
 langToggle.addEventListener("click",()=>{langOptions.style.display=langOptions.style.display==="block"?"none":"block";});
 document.querySelectorAll(".lang-btn").forEach(btn=>{
-  btn.addEventListener("click",()=>{setLang(btn.dataset.lang);langOptions.style.display="none";});
+btn.addEventListener("click",()=>{setLang(btn.dataset.lang);langOptions.style.display="none";});
 });
 
-// 日夜模式切換
+// 日夜模式
 const modeBtn=document.getElementById("modeToggle");
 modeBtn.addEventListener("click",()=>{
-  document.body.classList.toggle("light-mode");
-  if(document.body.classList.contains("light-mode")){modeBtn.innerText="☀️ 日間";}else{modeBtn.innerText="🌙 夜間";}
+document.body.classList.toggle("light-mode");
+modeBtn.innerText=document.body.classList.contains("light-mode")?translations[currentLang]["mode-day"]:translations[currentLang]["mode-night"];
 });
 
 // 彈窗政策
