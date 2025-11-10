@@ -6,25 +6,35 @@
 <title>YUFUNG (HK) NETWORK TECHNOLOGY CO., LIMITED</title>
 <style>
 body { font-family: Arial, sans-serif; margin:0; padding:0; line-height:1.6; transition: background-color 0.3s, color 0.3s;}
-main { max-width:900px; margin:40px auto; padding:0 20px;}
-section { margin-bottom:50px;}
+main { max-width:1000px; margin:40px auto; padding:0 20px;}
+section { margin-bottom:60px;}
 h2 { text-align:center; margin-bottom:20px;}
-.company-intro, .contact { text-align:center; font-size:16px;}
+.company-intro, .contact, .services { text-align:center; font-size:16px;}
 .contact p { margin:8px 0;}
 .button { display:inline-block; margin-top:15px; padding:12px 25px; text-decoration:none; border-radius:5px; font-size:16px; font-weight:bold; transition: background-color 0.3s, color 0.3s; cursor:pointer;}
 footer { text-align:center; padding:30px 20px; font-size:14px; transition: background-color 0.3s, color 0.3s; }
 #modeToggle { position:fixed; bottom:20px; right:20px; padding:10px 15px; border:none; border-radius:5px; font-weight:bold; z-index:1000; transition: background-color 0.3s, color 0.3s; cursor:pointer; }
 
-/* Banner 排版 */
-.banner-container { position: relative; text-align:center; width:100%; display:block; }
+/* Banner */
+.banner-container { width:100%; }
 .banner-container .banner { width:100%; height:auto; display:block; border-radius:8px; }
-.banner-container .banner-content { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); display:flex; align-items:center; gap:15px; flex-wrap:wrap; justify-content:center;}
-.logo-banner { max-height:80px; width:auto;}
-.company-names { text-align:center; color:#ffffff; }
-.company-name-en { font-size:26px; font-weight:bold; color:#ffffff; }
+
+/* Logo + 公司名字下方排版 */
+.logo-name-container { display:flex; align-items:center; justify-content:center; gap:20px; margin-top:20px; flex-wrap:wrap; }
+.logo-banner { max-height:80px; width:auto; }
+.company-names { text-align:left; }
+.company-name-en { font-size:26px; font-weight:bold; color:#4fc3f7; }
 .company-name-zh { font-size:16px; color:#cccccc; }
 
-/* 隱私條款彈窗 */
+/* 服務項目 */
+.services-grid { display:flex; flex-wrap:wrap; justify-content:center; gap:25px; margin-top:30px;}
+.service-card { background-color:rgba(255,255,255,0.05); border-radius:10px; padding:25px; flex:1 1 260px; max-width:280px; transition: transform 0.3s, background-color 0.3s; }
+.service-card:hover { transform:translateY(-5px); background-color:rgba(255,255,255,0.1); }
+.service-icon { font-size:40px; margin-bottom:10px; }
+.service-title { font-size:18px; font-weight:bold; margin-bottom:8px; }
+.service-desc { font-size:14px; color:#ccc; }
+
+/* 隱私政策彈窗 */
 #policyModal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); color:#e0e0e0; overflow:auto; z-index:10000; padding:40px 20px;}
 #policyModalContent { max-width:800px; margin:40px auto; background:#1e1e1e; padding:30px; border-radius:10px;}
 #policyModalContent h2 { color:#4fc3f7; text-align:center; }
@@ -38,6 +48,8 @@ body.light-mode h2, body.light-mode h3 { color:#0073e6; }
 body.light-mode .company-name-en { color:#0073e6; }
 body.light-mode .company-name-zh { color:#444444; }
 body.light-mode .button, body.light-mode #policyClose { background-color:#0073e6; color:#ffffff; }
+body.light-mode .service-card { background-color:#f7f7f7; color:#333; }
+body.light-mode .service-desc { color:#666; }
 body.light-mode footer { background-color:#f0f0f0; color:#666666; }
 /* 黑暗模式 */
 body.dark-mode { background-color:#121212; color:#e0e0e0; }
@@ -47,14 +59,15 @@ body.dark-mode .company-name-zh { color:#cccccc; }
 body.dark-mode .button, body.dark-mode #policyClose { background-color:#4fc3f7; color:#121212; }
 body.dark-mode footer { background-color:#1e1e1e; color:#888888; }
 
-@media (max-width:600px){ 
-    .banner-container .banner-content { flex-direction:column; gap:10px;}
-    .company-name-en { font-size:20px;}
-    .company-name-zh { font-size:14px;}
-    .logo-banner { max-height:60px;}
-    .company-intro, .contact { font-size:14px;}
-    .button { font-size:14px; padding:10px 20px;}
-    #modeToggle { padding:8px 12px; font-size:14px;}
+/* 手機自適應 */
+@media (max-width:600px){
+  .logo-name-container { flex-direction:column; align-items:center; gap:10px;}
+  .logo-banner { max-height:60px; }
+  .company-name-en { font-size:20px; text-align:center; }
+  .company-name-zh { font-size:14px; text-align:center; }
+  .company-intro, .contact, .services { font-size:14px;}
+  .button { font-size:14px; padding:10px 20px;}
+  #modeToggle { padding:8px 12px; font-size:14px;}
 }
 </style>
 </head>
@@ -63,12 +76,12 @@ body.dark-mode footer { background-color:#1e1e1e; color:#888888; }
 <header>
   <div class="banner-container">
     <img src="banner.png" alt="Banner" class="banner">
-    <div class="banner-content">
-      <img src="logo.png" alt="Logo" class="logo-banner">
-      <div class="company-names">
-        <div class="company-name-en">YUFUNG (HK) NETWORK TECHNOLOGY CO., LIMITED</div>
-        <div class="company-name-zh">宇鋒（香港）網絡科技有限公司</div>
-      </div>
+  </div>
+  <div class="logo-name-container">
+    <img src="logo.png" alt="Logo" class="logo-banner">
+    <div class="company-names">
+      <div class="company-name-en">YUFUNG (HK) NETWORK TECHNOLOGY CO., LIMITED</div>
+      <div class="company-name-zh">宇鋒（香港）網絡科技有限公司</div>
     </div>
   </div>
 </header>
@@ -76,15 +89,46 @@ body.dark-mode footer { background-color:#1e1e1e; color:#888888; }
 <main>
 <section class="company-intro">
 <h2>公司簡介</h2>
-<p>YUFUNG (HK) NETWORK TECHNOLOGY CO., LIMITED (宇鋒香港網絡科技有限公司) 專注於網絡科技開發與移動應用創新。我們的團隊具備豐富的軟件開發、數碼解決方案及應用程式設計經驗。</p>
+<p>YUFUNG (HK) NETWORK TECHNOLOGY CO., LIMITED（宇鋒香港網絡科技有限公司）專注於網絡科技開發與移動應用創新。我們的團隊擁有豐富的軟件開發、數碼解決方案及應用程式設計經驗。</p>
 <p>公司核心服務包括：iOS / Android 應用開發、Web 系統整合、數據分析及技術支持，旨在為企業和個人用戶提供高效、安全、穩定的數碼服務平台。</p>
+</section>
+
+<section class="services">
+<h2>關於我們 · 服務項目</h2>
+<div class="services-grid">
+  <div class="service-card">
+    <div class="service-icon">📱</div>
+    <div class="service-title">行動應用開發</div>
+    <div class="service-desc">專業開發 iOS / Android 應用，支援 Swift、Kotlin、Unity 多平台架構。</div>
+  </div>
+  <div class="service-card">
+    <div class="service-icon">💻</div>
+    <div class="service-title">網站與系統建設</div>
+    <div class="service-desc">企業網站、後台管理系統與雲端部署整合，安全穩定。</div>
+  </div>
+  <div class="service-card">
+    <div class="service-icon">☁️</div>
+    <div class="service-title">雲端技術支援</div>
+    <div class="service-desc">支援 AWS、Google Cloud、阿里雲等環境配置與維護。</div>
+  </div>
+  <div class="service-card">
+    <div class="service-icon">📊</div>
+    <div class="service-title">數據分析與優化</div>
+    <div class="service-desc">透過數據分析與A/B測試提升產品效率與用戶體驗。</div>
+  </div>
+  <div class="service-card">
+    <div class="service-icon">🎮</div>
+    <div class="service-title">遊戲與廣告整合</div>
+    <div class="service-desc">提供遊戲開發與穿山甲、Google AdMob 等廣告SDK接入服務。</div>
+  </div>
+</div>
 </section>
 
 <section class="contact" id="contact">
 <h2>聯絡我們</h2>
-<p>電話：+852-4613 7070</p>
+<p>電話：（852） 4613 7070</p>
 <p><a href="https://wa.me/85246137070" target="_blank" class="button">用 WhatsApp 聯絡我們</a></p>
-<p>Email：info@menfo.men</p>
+<p>Email：<a href="mailto:contact-yufunghk@menfo.men">contact-yufunghk@menfo.men</a></p>
 <p>地址：香港</p>
 </section>
 </main>
@@ -114,23 +158,24 @@ body.dark-mode footer { background-color:#1e1e1e; color:#888888; }
 </div>
 
 <script>
-// 系統偏好模式
-const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-document.body.classList.add(prefersDark ? 'dark-mode' : 'light-mode');
-
-// 切換模式按鈕
-const toggleBtn = document.getElementById('modeToggle');
-toggleBtn.addEventListener('click', ()=>{
-if(document.body.classList.contains('dark-mode')){
-document.body.classList.remove('dark-mode'); document.body.classList.add('light-mode');
-} else {
-document.body.classList.remove('light-mode'); document.body.classList.add('dark-mode');
-}
+// 模式切換
+const modeToggle = document.getElementById('modeToggle');
+const body = document.body;
+modeToggle.addEventListener('click', () => {
+  body.classList.toggle('dark-mode');
+  body.classList.toggle('light-mode');
 });
-
-// 隱私政策彈窗
-function openPolicy(){ document.getElementById('policyModal').style.display='block'; }
-function closePolicy(){ document.getElementById('policyModal').style.display='none'; }
+if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  body.classList.add('dark-mode');
+} else {
+  body.classList.add('light-mode');
+}
+function openPolicy() {
+  document.getElementById('policyModal').style.display = 'block';
+}
+function closePolicy() {
+  document.getElementById('policyModal').style.display = 'none';
+}
 </script>
 
 </body>
