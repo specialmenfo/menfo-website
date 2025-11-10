@@ -15,6 +15,11 @@ h2 { text-align:center; margin-bottom:20px;}
 footer { text-align:center; padding:30px 20px; font-size:14px; transition: background-color 0.3s, color 0.3s; }
 #modeToggle { position:fixed; bottom:20px; right:20px; padding:10px 15px; border:none; border-radius:5px; font-weight:bold; z-index:1000; transition: background-color 0.3s, color 0.3s; cursor:pointer; }
 
+/* 語言切換按鈕 */
+#langSwitcher { position:fixed; top:20px; right:20px; z-index:1000; }
+.lang-btn { margin:0 5px; padding:6px 12px; cursor:pointer; border:none; border-radius:4px; font-weight:bold; transition: background-color 0.3s, color 0.3s;}
+.lang-btn.active { background-color:#4fc3f7; color:#121212; }
+
 /* Banner */
 .banner-container { width:100%; }
 .banner-container .banner { width:100%; height:auto; display:block; border-radius:8px; }
@@ -67,11 +72,19 @@ body.dark-mode footer { background-color:#1e1e1e; color:#888888; }
   .company-name-zh { font-size:14px; text-align:center; }
   .company-intro, .contact, .services { font-size:14px;}
   .button { font-size:14px; padding:10px 20px;}
-  #modeToggle { padding:8px 12px; font-size:14px;}
+  #modeToggle, #langSwitcher { padding:8px 12px; font-size:14px; }
+  #langSwitcher { top:10px; right:10px; }
 }
 </style>
 </head>
 <body>
+
+<!-- 語言切換 -->
+<div id="langSwitcher">
+  <button class="lang-btn active" data-lang="zh-HK">繁體</button>
+  <button class="lang-btn" data-lang="zh-CN">简体</button>
+  <button class="lang-btn" data-lang="en">English</button>
+</div>
 
 <header>
   <div class="banner-container">
@@ -87,49 +100,48 @@ body.dark-mode footer { background-color:#1e1e1e; color:#888888; }
 </header>
 
 <main>
-<section class="company-intro">
+<section class="company-intro" id="intro">
 <h2>公司簡介</h2>
-<p>YUFUNG (HK) NETWORK TECHNOLOGY CO., LIMITED（宇鋒香港網絡科技有限公司）專注於網絡科技開發與移動應用創新。我們的團隊擁有豐富的軟件開發、數碼解決方案及應用程式設計經驗。</p>
-<p>公司核心服務包括：iOS / Android 應用開發、Web 系統整合、數據分析及技術支持，旨在為企業和個人用戶提供高效、安全、穩定的數碼服務平台。</p>
+<p id="intro-text">我們是一家專注於行動應用與遊戲開發的科技公司，致力於為全球用戶提供創新與高品質的數位娛樂體驗。</p>
 </section>
 
-<section class="services">
+<section class="services" id="services">
 <h2>關於我們 · 服務項目</h2>
 <div class="services-grid">
   <div class="service-card">
     <div class="service-icon">📱</div>
-    <div class="service-title">行動應用開發</div>
-    <div class="service-desc">專業開發 iOS / Android 應用，支援 Swift、Kotlin、Unity 多平台架構。</div>
+    <div class="service-title" id="svc1-title">行動應用開發</div>
+    <div class="service-desc" id="svc1-desc">專業開發 iOS / Android 應用，支援 Swift、Kotlin、Unity 多平台架構。</div>
   </div>
   <div class="service-card">
     <div class="service-icon">💻</div>
-    <div class="service-title">網站與系統建設</div>
-    <div class="service-desc">企業網站、後台管理系統與雲端部署整合，安全穩定。</div>
+    <div class="service-title" id="svc2-title">網站與系統建設</div>
+    <div class="service-desc" id="svc2-desc">企業網站、後台管理系統與雲端部署整合，安全穩定。</div>
   </div>
   <div class="service-card">
     <div class="service-icon">☁️</div>
-    <div class="service-title">雲端技術支援</div>
-    <div class="service-desc">支援 AWS、Google Cloud、阿里雲等環境配置與維護。</div>
+    <div class="service-title" id="svc3-title">雲端技術支援</div>
+    <div class="service-desc" id="svc3-desc">支援 AWS、Google Cloud、阿里雲等環境配置與維護。</div>
   </div>
   <div class="service-card">
     <div class="service-icon">📊</div>
-    <div class="service-title">數據分析與優化</div>
-    <div class="service-desc">透過數據分析與A/B測試提升產品效率與用戶體驗。</div>
+    <div class="service-title" id="svc4-title">數據分析與優化</div>
+    <div class="service-desc" id="svc4-desc">透過數據分析與A/B測試提升產品效率與用戶體驗。</div>
   </div>
   <div class="service-card">
     <div class="service-icon">🎮</div>
-    <div class="service-title">遊戲與廣告整合</div>
-    <div class="service-desc">提供遊戲開發與穿山甲、Google AdMob 等廣告SDK接入服務。</div>
+    <div class="service-title" id="svc5-title">遊戲與廣告整合</div>
+    <div class="service-desc" id="svc5-desc">提供遊戲開發與穿山甲、Google AdMob 等廣告SDK接入服務。</div>
   </div>
 </div>
 </section>
 
 <section class="contact" id="contact">
-<h2>聯絡我們</h2>
-<p>電話：（852） 4613 7070</p>
-<p><a href="https://wa.me/85246137070" target="_blank" class="button">用 WhatsApp 聯絡我們</a></p>
-<p>Email：<a href="mailto:contact-yufunghk@menfo.men">contact-yufunghk@menfo.men</a></p>
-<p>地址：香港</p>
+<h2 id="contact-title">聯絡我們</h2>
+<p id="contact-phone">電話：（852） 4613 7070</p>
+<p><a href="https://wa.me/85246137070" target="_blank" class="button" id="contact-wa">用 WhatsApp 聯絡我們</a></p>
+<p id="contact-email">Email：<a href="mailto:contact-yufunghk@menfo.men">contact-yufunghk@menfo.men</a></p>
+<p id="contact-address">地址：香港</p>
 </section>
 </main>
 
@@ -170,12 +182,66 @@ if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
 } else {
   body.classList.add('light-mode');
 }
-function openPolicy() {
-  document.getElementById('policyModal').style.display = 'block';
-}
-function closePolicy() {
-  document.getElementById('policyModal').style.display = 'none';
-}
+
+// 隱私政策彈窗
+function openPolicy() { document.getElementById('policyModal').style.display = 'block'; }
+function closePolicy() { document.getElementById('policyModal').style.display = 'none'; }
+
+// 語言切換資料
+const translations = {
+  "zh-HK": {
+    "intro-text": "我們是一家專注於行動應用與遊戲開發的科技公司，致力於為全球用戶提供創新與高品質的數位娛樂體驗。",
+    "svc1-title": "行動應用開發", "svc1-desc": "專業開發 iOS / Android 應用，支援 Swift、Kotlin、Unity 多平台架構。",
+    "svc2-title": "網站與系統建設", "svc2-desc": "企業網站、後台管理系統與雲端部署整合，安全穩定。",
+    "svc3-title": "雲端技術支援", "svc3-desc": "支援 AWS、Google Cloud、阿里雲等環境配置與維護。",
+    "svc4-title": "數據分析與優化", "svc4-desc": "透過數據分析與A/B測試提升產品效率與用戶體驗。",
+    "svc5-title": "遊戲與廣告整合", "svc5-desc": "提供遊戲開發與穿山甲、Google AdMob 等廣告SDK接入服務。",
+    "contact-title": "聯絡我們", "contact-phone": "電話：（852） 4613 7070",
+    "contact-wa": "用 WhatsApp 聯絡我們",
+    "contact-email": "Email：contact-yufunghk@menfo.men",
+    "contact-address": "地址：香港"
+  },
+  "zh-CN": {
+    "intro-text": "我们是一家专注于移动应用与游戏开发的科技公司，致力于为全球用户提供创新与高品质的数字娱乐体验。",
+    "svc1-title": "移动应用开发", "svc1-desc": "专业开发 iOS / Android 应用，支持 Swift、Kotlin、Unity 多平台架构。",
+    "svc2-title": "网站与系统建设", "svc2-desc": "企业网站、后台管理系统与云端部署整合，安全稳定。",
+    "svc3-title": "云端技术支持", "svc3-desc": "支持 AWS、Google Cloud、阿里云等环境配置与维护。",
+    "svc4-title": "数据分析与优化", "svc4-desc": "通过数据分析与A/B测试提升产品效率与用户体验。",
+    "svc5-title": "游戏与广告整合", "svc5-desc": "提供游戏开发与穿山甲、Google AdMob 等广告SDK接入服务。",
+    "contact-title": "联系我们", "contact-phone": "电话：（852） 4613 7070",
+    "contact-wa": "用 WhatsApp 联系我们",
+    "contact-email": "Email：contact-yufunghk@menfo.men",
+    "contact-address": "地址：香港"
+  },
+  "en": {
+    "intro-text": "We are a technology company focused on mobile app and game development, dedicated to delivering innovative and high-quality digital entertainment experiences to users worldwide.",
+    "svc1-title": "Mobile App Development", "svc1-desc": "Professional development for iOS / Android apps, supporting Swift, Kotlin, and Unity multi-platform frameworks.",
+    "svc2-title": "Website & System Development", "svc2-desc": "Enterprise websites, backend systems, and cloud deployment integration with security and stability.",
+    "svc3-title": "Cloud Technical Support", "svc3-desc": "Support for AWS, Google Cloud, Alibaba Cloud environments configuration and maintenance.",
+    "svc4-title": "Data Analysis & Optimization", "svc4-desc": "Improve product efficiency and user experience through data analysis and A/B testing.",
+    "svc5-title": "Game & Ad Integration", "svc5-desc": "Provide game development and integration services for Pangle, Google AdMob, and other ad SDKs.",
+    "contact-title": "Contact Us", "contact-phone": "Phone: (852) 4613 7070",
+    "contact-wa": "Contact via WhatsApp",
+    "contact-email": "Email: contact-yufunghk@menfo.men",
+    "contact-address": "Address: Hong Kong"
+  }
+};
+
+// 語言切換
+const langButtons = document.querySelectorAll('.lang-btn');
+langButtons.forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    const lang = btn.getAttribute('data-lang');
+    // 更新內容
+    Object.keys(translations[lang]).forEach(id=>{
+      const el = document.getElementById(id);
+      if(el) el.innerHTML = translations[lang][id];
+    });
+    // active 按鈕樣式
+    langButtons.forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
 </script>
 
 </body>
