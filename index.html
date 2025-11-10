@@ -24,13 +24,6 @@ footer { text-align:center; padding:30px 20px; font-size:14px; transition: backg
 .banner-container { width:100%; }
 .banner-container .banner { width:100%; height:auto; display:block; border-radius:8px; }
 
-/* Logo + 公司名字下方排版 */
-.logo-name-container { display:flex; align-items:center; justify-content:center; gap:20px; margin-top:20px; flex-wrap:wrap; }
-.logo-banner { max-height:80px; width:auto; }
-.company-names { text-align:left; }
-.company-name-en { font-size:26px; font-weight:bold; color:#4fc3f7; }
-.company-name-zh { font-size:16px; color:#cccccc; }
-
 /* 服務項目 */
 .services-grid { display:flex; flex-wrap:wrap; justify-content:center; gap:25px; margin-top:30px;}
 .service-card { background-color:rgba(255,255,255,0.05); border-radius:10px; padding:25px; flex:1 1 260px; max-width:280px; transition: transform 0.3s, background-color 0.3s; }
@@ -50,8 +43,6 @@ footer { text-align:center; padding:30px 20px; font-size:14px; transition: backg
 /* 日間模式 */
 body.light-mode { background-color:#ffffff; color:#333333; }
 body.light-mode h2, body.light-mode h3 { color:#0073e6; }
-body.light-mode .company-name-en { color:#0073e6; }
-body.light-mode .company-name-zh { color:#444444; }
 body.light-mode .button, body.light-mode #policyClose { background-color:#0073e6; color:#ffffff; }
 body.light-mode .service-card { background-color:#f7f7f7; color:#333; }
 body.light-mode .service-desc { color:#666; }
@@ -59,18 +50,13 @@ body.light-mode footer { background-color:#f0f0f0; color:#666666; }
 /* 黑暗模式 */
 body.dark-mode { background-color:#121212; color:#e0e0e0; }
 body.dark-mode h2, body.dark-mode h3 { color:#4fc3f7; }
-body.dark-mode .company-name-en { color:#4fc3f7; }
-body.dark-mode .company-name-zh { color:#cccccc; }
 body.dark-mode .button, body.dark-mode #policyClose { background-color:#4fc3f7; color:#121212; }
 body.dark-mode footer { background-color:#1e1e1e; color:#888888; }
 
 /* 手機自適應 */
 @media (max-width:600px){
-  .logo-name-container { flex-direction:column; align-items:center; gap:10px;}
-  .logo-banner { max-height:60px; }
-  .company-name-en { font-size:20px; text-align:center; }
-  .company-name-zh { font-size:14px; text-align:center; }
-  .company-intro, .contact, .services { font-size:14px;}
+  .services-grid { flex-direction:column; gap:15px; }
+  .service-card { max-width:100%; }
   .button { font-size:14px; padding:10px 20px;}
   #modeToggle, #langSwitcher { padding:8px 12px; font-size:14px; }
   #langSwitcher { top:10px; right:10px; }
@@ -90,23 +76,16 @@ body.dark-mode footer { background-color:#1e1e1e; color:#888888; }
   <div class="banner-container">
     <img src="banner.png" alt="Banner" class="banner">
   </div>
-  <div class="logo-name-container">
-    <img src="logo.png" alt="Logo" class="logo-banner">
-    <div class="company-names">
-      <div class="company-name-en">YUFUNG (HK) NETWORK TECHNOLOGY CO., LIMITED</div>
-      <div class="company-name-zh">宇鋒（香港）網絡科技有限公司</div>
-    </div>
-  </div>
 </header>
 
 <main>
-<section class="company-intro" id="intro">
-<h2>公司簡介</h2>
+<section class="company-intro">
+<h2 id="intro-title">公司簡介</h2>
 <p id="intro-text">我們是一家專注於行動應用與遊戲開發的科技公司，致力於為全球用戶提供創新與高品質的數位娛樂體驗。</p>
 </section>
 
-<section class="services" id="services">
-<h2>關於我們 · 服務項目</h2>
+<section class="services">
+<h2 id="services-title">關於我們 · 服務項目</h2>
 <div class="services-grid">
   <div class="service-card">
     <div class="service-icon">📱</div>
@@ -136,18 +115,23 @@ body.dark-mode footer { background-color:#1e1e1e; color:#888888; }
 </div>
 </section>
 
-<section class="contact" id="contact">
+<section class="contact">
 <h2 id="contact-title">聯絡我們</h2>
-<p id="contact-phone">電話：（852） 4613 7070</p>
-<p><a href="https://wa.me/85246137070" target="_blank" class="button" id="contact-wa">用 WhatsApp 聯絡我們</a></p>
-<p id="contact-email">Email：<a href="mailto:contact-yufunghk@menfo.men">contact-yufunghk@menfo.men</a></p>
-<p id="contact-address">地址：香港</p>
+<p id="contact-phone">☎️ <a href="tel:+85246137070">+852-4613 7070</a></p>
+<p id="contact-email">✉️ <a href="mailto:contact-yufunghk@menfo.men">contact-yufunghk@menfo.men</a></p>
+<p>
+  <a href="https://wa.me/85246137070" target="_blank" class="button">💬 WhatsApp 聯絡我們</a>
+</p>
+<p>
+  <a href="https://carousell.app.link/bmoBzQ2EbYb" target="_blank" class="button">🛒 Carousell 商店</a>
+</p>
+<p id="contact-address">📍 地址：香港</p>
 </section>
 </main>
 
 <footer>
 &copy; 2025 YUFUNG (HK) NETWORK TECHNOLOGY CO., LIMITED. All rights reserved.
-<p><button class="button" onclick="openPolicy()">隱私政策 & 使用條款</button></p>
+<p><button class="button" onclick="openPolicy()" id="policy-btn">隱私政策 & 使用條款</button></p>
 </footer>
 
 <button id="modeToggle">切換模式</button>
@@ -155,22 +139,22 @@ body.dark-mode footer { background-color:#1e1e1e; color:#888888; }
 <!-- 隱私政策彈窗 -->
 <div id="policyModal">
 <div id="policyModalContent">
-<h2>隱私政策 & 使用條款</h2>
-<h3>隱私政策</h3>
-<p>本公司尊重您的隱私，承諾保護所有用戶資料。當您使用我們的應用程式或網站時，我們可能會收集必要的資訊，例如電子郵件、使用偏好或系統資訊，用於提供更好的服務和改進產品。我們不會將個人資料出售或共享給第三方，除非法律要求或您明確同意。</p>
-<h3>使用條款</h3>
+<h2 id="policy-title">隱私政策 & 使用條款</h2>
+<h3 id="privacy-title">隱私政策</h3>
+<p id="privacy-text">本公司尊重您的隱私，承諾保護所有用戶資料。當您使用我們的應用程式或網站時，我們可能會收集必要的資訊，例如電子郵件、使用偏好或系統資訊，用於提供更好的服務和改進產品。我們不會將個人資料出售或共享給第三方，除非法律要求或您明確同意。</p>
+<h3 id="terms-title">使用條款</h3>
 <p>使用本公司提供的應用程式或網站即表示您同意遵守以下條款：</p>
-<ul>
+<ul id="terms-list">
 <li>不得使用本服務進行非法活動。</li>
 <li>尊重知識產權，不得未經授權使用或傳播本公司內容。</li>
 <li>本公司保留隨時修改或終止服務的權利。</li>
 </ul>
-<button id="policyClose" onclick="closePolicy()">關閉</button>
+<button id="policyClose">關閉</button>
 </div>
 </div>
 
 <script>
-// 模式切換
+// 黑暗/日間模式
 const modeToggle = document.getElementById('modeToggle');
 const body = document.body;
 modeToggle.addEventListener('click', () => {
@@ -186,59 +170,60 @@ if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
 // 隱私政策彈窗
 function openPolicy() { document.getElementById('policyModal').style.display = 'block'; }
 function closePolicy() { document.getElementById('policyModal').style.display = 'none'; }
+document.getElementById('policyClose').addEventListener('click', closePolicy);
 
-// 語言切換資料
+// 三語切換
 const translations = {
   "zh-HK": {
-    "intro-text": "我們是一家專注於行動應用與遊戲開發的科技公司，致力於為全球用戶提供創新與高品質的數位娛樂體驗。",
-    "svc1-title": "行動應用開發", "svc1-desc": "專業開發 iOS / Android 應用，支援 Swift、Kotlin、Unity 多平台架構。",
-    "svc2-title": "網站與系統建設", "svc2-desc": "企業網站、後台管理系統與雲端部署整合，安全穩定。",
-    "svc3-title": "雲端技術支援", "svc3-desc": "支援 AWS、Google Cloud、阿里雲等環境配置與維護。",
-    "svc4-title": "數據分析與優化", "svc4-desc": "透過數據分析與A/B測試提升產品效率與用戶體驗。",
-    "svc5-title": "遊戲與廣告整合", "svc5-desc": "提供遊戲開發與穿山甲、Google AdMob 等廣告SDK接入服務。",
-    "contact-title": "聯絡我們", "contact-phone": "電話：（852） 4613 7070",
-    "contact-wa": "用 WhatsApp 聯絡我們",
-    "contact-email": "Email：contact-yufunghk@menfo.men",
-    "contact-address": "地址：香港"
+    "intro-title":"公司簡介","intro-text":"我們是一家專注於行動應用與遊戲開發的科技公司，致力於為全球用戶提供創新與高品質的數位娛樂體驗。",
+    "services-title":"關於我們 · 服務項目",
+    "svc1-title":"行動應用開發","svc1-desc":"專業開發 iOS / Android 應用，支援 Swift、Kotlin、Unity 多平台架構。",
+    "svc2-title":"網站與系統建設","svc2-desc":"企業網站、後台管理系統與雲端部署整合，安全穩定。",
+    "svc3-title":"雲端技術支援","svc3-desc":"支援 AWS、Google Cloud、阿里雲等環境配置與維護。",
+    "svc4-title":"數據分析與優化","svc4-desc":"透過數據分析與A/B測試提升產品效率與用戶體驗。",
+    "svc5-title":"遊戲與廣告整合","svc5-desc":"提供遊戲開發與穿山甲、Google AdMob 等廣告SDK接入服務。",
+    "contact-title":"聯絡我們","contact-phone":"☎️ +852-4613 7070",
+    "contact-wa":"💬 WhatsApp 聯絡我們","contact-email":"✉️ contact-yufunghk@menfo.men",
+    "contact-address":"📍 地址：香港","contact-carousell":"🛒 Carousell 商店",
+    "policy-btn":"隱私政策 & 使用條款","policy-title":"隱私政策 & 使用條款","privacy-title":"隱私政策","privacy-text":"本公司尊重您的隱私，承諾保護所有用戶資料。當您使用我們的應用程式或網站時，我們可能會收集必要的資訊，例如電子郵件、使用偏好或系統資訊，用於提供更好的服務和改進產品。我們不會將個人資料出售或共享給第三方，除非法律要求或您明確同意。","terms-title":"使用條款"
   },
   "zh-CN": {
-    "intro-text": "我们是一家专注于移动应用与游戏开发的科技公司，致力于为全球用户提供创新与高品质的数字娱乐体验。",
-    "svc1-title": "移动应用开发", "svc1-desc": "专业开发 iOS / Android 应用，支持 Swift、Kotlin、Unity 多平台架构。",
-    "svc2-title": "网站与系统建设", "svc2-desc": "企业网站、后台管理系统与云端部署整合，安全稳定。",
-    "svc3-title": "云端技术支持", "svc3-desc": "支持 AWS、Google Cloud、阿里云等环境配置与维护。",
-    "svc4-title": "数据分析与优化", "svc4-desc": "通过数据分析与A/B测试提升产品效率与用户体验。",
-    "svc5-title": "游戏与广告整合", "svc5-desc": "提供游戏开发与穿山甲、Google AdMob 等广告SDK接入服务。",
-    "contact-title": "联系我们", "contact-phone": "电话：（852） 4613 7070",
-    "contact-wa": "用 WhatsApp 联系我们",
-    "contact-email": "Email：contact-yufunghk@menfo.men",
-    "contact-address": "地址：香港"
+    "intro-title":"公司简介","intro-text":"我们是一家专注于移动应用与游戏开发的科技公司，致力于为全球用户提供创新与高品质的数字娱乐体验。",
+    "services-title":"关于我们 · 服务项目",
+    "svc1-title":"移动应用开发","svc1-desc":"专业开发 iOS / Android 应用，支持 Swift、Kotlin、Unity 多平台架构。",
+    "svc2-title":"网站与系统建设","svc2-desc":"企业网站、后台管理系统与云端部署整合，安全稳定。",
+    "svc3-title":"云端技术支持","svc3-desc":"支持 AWS、Google Cloud、阿里云等环境配置与维护。",
+    "svc4-title":"数据分析与优化","svc4-desc":"通过数据分析与A/B测试提升产品效率与用户体验。",
+    "svc5-title":"游戏与广告整合","svc5-desc":"提供游戏开发与穿山甲、Google AdMob 等广告SDK接入服务。",
+    "contact-title":"联系我们","contact-phone":"☎️ +852-4613 7070",
+    "contact-wa":"💬 WhatsApp 联系我们","contact-email":"✉️ contact-yufunghk@menfo.men",
+    "contact-address":"📍 地址：香港","contact-carousell":"🛒 Carousell 商店",
+    "policy-btn":"隐私政策 & 使用条款","policy-title":"隐私政策 & 使用条款","privacy-title":"隐私政策","privacy-text":"本公司尊重您的隐私，承诺保护所有用户资料。使用我们的应用或网站时，我们可能会收集必要信息，例如电子邮件、使用偏好或系统信息，用于提供更好的服务和产品改进。我们不会将个人资料出售或共享给第三方，除非法律要求或您明确同意。","terms-title":"使用条款"
   },
   "en": {
-    "intro-text": "We are a technology company focused on mobile app and game development, dedicated to delivering innovative and high-quality digital entertainment experiences to users worldwide.",
-    "svc1-title": "Mobile App Development", "svc1-desc": "Professional development for iOS / Android apps, supporting Swift, Kotlin, and Unity multi-platform frameworks.",
-    "svc2-title": "Website & System Development", "svc2-desc": "Enterprise websites, backend systems, and cloud deployment integration with security and stability.",
-    "svc3-title": "Cloud Technical Support", "svc3-desc": "Support for AWS, Google Cloud, Alibaba Cloud environments configuration and maintenance.",
-    "svc4-title": "Data Analysis & Optimization", "svc4-desc": "Improve product efficiency and user experience through data analysis and A/B testing.",
-    "svc5-title": "Game & Ad Integration", "svc5-desc": "Provide game development and integration services for Pangle, Google AdMob, and other ad SDKs.",
-    "contact-title": "Contact Us", "contact-phone": "Phone: (852) 4613 7070",
-    "contact-wa": "Contact via WhatsApp",
-    "contact-email": "Email: contact-yufunghk@menfo.men",
-    "contact-address": "Address: Hong Kong"
+    "intro-title":"Company Profile","intro-text":"We are a technology company focused on mobile app and game development, dedicated to delivering innovative and high-quality digital entertainment experiences to users worldwide.",
+    "services-title":"About Us · Services",
+    "svc1-title":"Mobile App Development","svc1-desc":"Professional development for iOS / Android apps, supporting Swift, Kotlin, and Unity multi-platform frameworks.",
+    "svc2-title":"Website & System Development","svc2-desc":"Enterprise websites, backend systems, and cloud deployment integration with security and stability.",
+    "svc3-title":"Cloud Technical Support","svc3-desc":"Support for AWS, Google Cloud, Alibaba Cloud environments configuration and maintenance.",
+    "svc4-title":"Data Analysis & Optimization","svc4-desc":"Improve product efficiency and user experience through data analysis and A/B testing.",
+    "svc5-title":"Game & Ad Integration","svc5-desc":"Provide game development and integration services for Pangle, Google AdMob, and other ad SDKs.",
+    "contact-title":"Contact Us","contact-phone":"☎️ +852-4613 7070",
+    "contact-wa":"💬 Contact via WhatsApp","contact-email":"✉️ contact-yufunghk@menfo.men",
+    "contact-address":"📍 Address: Hong Kong","contact-carousell":"🛒 Carousell Store",
+    "policy-btn":"Privacy & Terms","policy-title":"Privacy & Terms","privacy-title":"Privacy Policy","privacy-text":"We respect your privacy and are committed to protecting all user data. When using our apps or website, we may collect necessary information, such as email, preferences, or system information, to provide better service and product improvements. We will not sell or share personal data with third parties unless legally required or explicitly agreed by you.","terms-title":"Terms of Use"
   }
 };
 
-// 語言切換
 const langButtons = document.querySelectorAll('.lang-btn');
-langButtons.forEach(btn=>{
-  btn.addEventListener('click', ()=>{
+langButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
     const lang = btn.getAttribute('data-lang');
-    // 更新內容
-    Object.keys(translations[lang]).forEach(id=>{
+    Object.keys(translations[lang]).forEach(id => {
       const el = document.getElementById(id);
       if(el) el.innerHTML = translations[lang][id];
     });
-    // active 按鈕樣式
-    langButtons.forEach(b=>b.classList.remove('active'));
+    langButtons.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
   });
 });
