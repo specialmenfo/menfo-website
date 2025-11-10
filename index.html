@@ -151,11 +151,10 @@ body.dark-mode footer { background-color:#1e1e1e; color:#888888; }
 <h3 id="privacy-title">隱私政策</h3>
 <p id="privacy-text">本公司尊重您的隱私，承諾保護所有用戶資料。當您使用我們的應用程式或網站時，我們可能會收集必要的資訊，例如電子郵件、使用偏好或系統資訊，用於提供更好的服務和改進產品。我們不會將個人資料出售或共享給第三方，除非法律要求或您明確同意。</p>
 <h3 id="terms-title">使用條款</h3>
-<p>使用本公司提供的應用程式或網站即表示您同意遵守以下條款：</p>
 <ul id="terms-list">
-<li>不得使用本服務進行非法活動。</li>
-<li>尊重知識產權，不得未經授權使用或傳播本公司內容。</li>
-<li>本公司保留隨時修改或終止服務的權利。</li>
+  <li id="term1">不得使用本服務進行非法活動。</li>
+  <li id="term2">尊重知識產權，不得未經授權使用或傳播本公司內容。</li>
+  <li id="term3">本公司保留隨時修改或終止服務的權利。</li>
 </ul>
 <button id="policyClose">關閉</button>
 </div>
@@ -197,7 +196,10 @@ const translations = {
     "contact-address":"📍 地址：香港","contact-carousell":"🛒 Carousell 商店",
     "company-name-en":"YUFUNG (HK) NETWORK TECHNOLOGY CO., LIMITED",
     "company-name-zh":"宇鋒（香港）網絡科技有限公司",
-    "policy-btn":"隱私政策 & 使用條款","policy-title":"隱私政策 & 使用條款","privacy-title":"隱私政策","privacy-text":"本公司尊重您的隱私，承諾保護所有用戶資料。當您使用我們的應用程式或網站時，我們可能會收集必要的資訊，例如電子郵件、使用偏好或系統資訊，用於提供更好的服務和改進產品。我們不會將個人資料出售或共享給第三方，除非法律要求或您明確同意。","terms-title":"使用條款"
+    "policy-btn":"隱私政策 & 使用條款","policy-title":"隱私政策 & 使用條款","privacy-title":"隱私政策","privacy-text":"本公司尊重您的隱私，承諾保護所有用戶資料。當您使用我們的應用程式或網站時，我們可能會收集必要的資訊，例如電子郵件、使用偏好或系統資訊，用於提供更好的服務和改進產品。我們不會將個人資料出售或共享給第三方，除非法律要求或您明確同意。","terms-title":"使用條款",
+    "term1":"不得使用本服務進行非法活動。",
+    "term2":"尊重知識產權，不得未經授權使用或傳播本公司內容。",
+    "term3":"本公司保留隨時修改或終止服務的權利。"
   },
   "zh-CN": {
     "intro-title":"公司简介","intro-text":"我们是一家专注于移动应用与游戏开发的科技公司，致力于为全球用户提供创新与高品质的数字娱乐体验。",
@@ -213,7 +215,10 @@ const translations = {
     "contact-address":"📍 地址：香港","contact-carousell":"🛒 Carousell 商店",
     "company-name-en":"YUFUNG (HK) NETWORK TECHNOLOGY CO., LIMITED",
     "company-name-zh":"宇鋒（香港）网络科技有限公司",
-    "policy-btn":"隐私政策 & 使用条款","policy-title":"隐私政策 & 使用条款","privacy-title":"隐私政策","privacy-text":"本公司尊重您的隐私，承诺保护所有用户资料。使用我们的应用或网站时，我们可能会收集必要信息，例如电子邮件、使用偏好或系统信息，用于提供更好的服务和产品改进。我们不会将个人资料出售或共享给第三方，除非法律要求或您明确同意。","terms-title":"使用条款"
+    "policy-btn":"隐私政策 & 使用条款","policy-title":"隐私政策 & 使用条款","privacy-title":"隐私政策","privacy-text":"本公司尊重您的隐私，承诺保护所有用户资料。使用我们的应用或网站时，我们可能会收集必要信息，例如电子邮件、使用偏好或系统信息，用于提供更好的服务和产品改进。我们不会将个人资料出售或共享给第三方，除非法律要求或您明确同意。","terms-title":"使用条款",
+    "term1":"不得使用本服务进行非法活动。",
+    "term2":"尊重知识产权，未经授权不得使用或传播本公司内容。",
+    "term3":"本公司保留随时修改或终止服务的权利。"
   },
   "en": {
     "intro-title":"Company Profile","intro-text":"We are a technology company focused on mobile app and game development, dedicated to delivering innovative and high-quality digital entertainment experiences to users worldwide.",
@@ -229,7 +234,10 @@ const translations = {
     "contact-address":"📍 Address: Hong Kong","contact-carousell":"🛒 Carousell Store",
     "company-name-en":"YUFUNG (HK) NETWORK TECHNOLOGY CO., LIMITED",
     "company-name-zh":"宇鋒（香港）網絡科技有限公司",
-    "policy-btn":"Privacy & Terms","policy-title":"Privacy & Terms","privacy-title":"Privacy Policy","privacy-text":"We respect your privacy and are committed to protecting all user data. When using our apps or website, we may collect necessary information such as email, preferences, or system data to provide better services and improve products. We do not sell or share personal data to third parties unless legally required or with your explicit consent.","terms-title":"Terms of Use"
+    "policy-btn":"Privacy & Terms","policy-title":"Privacy & Terms","privacy-title":"Privacy Policy","privacy-text":"We respect your privacy and are committed to protecting all user data. When using our apps or website, we may collect necessary information such as email, preferences, or system data to provide better services and improve products. We do not sell or share personal data to third parties unless legally required or with your explicit consent.","terms-title":"Terms of Use",
+    "term1":"Do not use the service for illegal activities.",
+    "term2":"Respect intellectual property rights; do not use or distribute our content without authorization.",
+    "term3":"The company reserves the right to modify or terminate services at any time."
   }
 };
 
