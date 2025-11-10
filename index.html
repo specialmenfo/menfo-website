@@ -14,7 +14,7 @@
 }
 html,body{height:100%;margin:0;padding:0;font-family:Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased;}
 body{transition:background-color .25s,color .25s;background:var(--dark-bg);color:#e0e0e0;}
-body.light-mode{background:var(--light-bg);color:#222;}
+body.light-mode{background:var(--light-bg);color:#111;}
 .container{max-width:1000px;margin:36px auto;padding:0 16px;}
 header{position:relative;text-align:center;margin-bottom:18px;}
 .banner{width:100%;max-height:320px;object-fit:cover;border-radius:10px;display:block;margin:0 auto;z-index:1;}
@@ -28,15 +28,16 @@ header{position:relative;text-align:center;margin-bottom:18px;}
 #langOptions button.active{background:#e8f9ff;}
 h2{text-align:center;margin:18px 0;color:var(--accent);}
 .intro,.services,.contact{text-align:center;margin-bottom:26px;}
-p{margin:8px 0;color:inherit;}
+p,ul{margin:8px 0;color:inherit;}
 .services-grid{display:flex;flex-wrap:wrap;gap:20px;justify-content:center;margin-top:12px;}
-.service-card{background:rgba(255,255,255,0.03);border-radius:10px;padding:18px;width:260px;box-sizing:border-box;transition:transform .18s,background .18s;text-align:left;}
-.service-card:hover{transform:translateY(-6px);background:rgba(255,255,255,0.06);}
+.service-card{background:rgba(255,255,255,0.03);border-radius:10px;padding:18px;width:260px;box-sizing:border-box;transition:transform .25s,box-shadow .25s,background .25s;text-align:left;}
+.service-card:hover{transform:translateY(-6px);background:rgba(255,255,255,0.06);box-shadow:0 8px 24px rgba(0,0,0,0.4);}
 .service-icon{font-size:32px;margin-bottom:8px;}
 .service-title{font-weight:700;margin-bottom:6px;}
 .service-desc{color:#cfcfcf;font-size:14px;}
 .contact .row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:10px;}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:8px;text-decoration:none;color:inherit;border:0;cursor:pointer;font-weight:700;background:var(--accent);color:#121212;}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:8px;text-decoration:none;color:inherit;border:0;cursor:pointer;font-weight:700;background:var(--accent);color:#121212;transition:transform .18s;}
+.btn:hover{transform:scale(1.05);}
 .btn-secondary{background:transparent;color:var(--accent);border:1px solid rgba(255,255,255,0.06);padding:8px 12px;border-radius:8px;font-weight:700;}
 footer{text-align:center;margin:30px 0 60px;color:#bdbdbd;}
 #policyModal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:2500;align-items:center;justify-content:center;padding:20px;}
@@ -63,7 +64,7 @@ body.light-mode #modeToggle, body.light-mode #backToTop, body.light-mode .btn{ba
 <header>
   <img src="banner.png" alt="Banner" class="banner" id="bannerImg">
   <div id="langDropdown">
-    <button id="langToggle">🌐 切換語言 ▼</button>
+    <button id="langToggle">🌍 🌐 切換語言 ▼</button>
     <div id="langOptions" role="menu" aria-hidden="true">
       <button class="lang-btn" data-lang="zh-HK">繁體</button>
       <button class="lang-btn" data-lang="zh-CN">简体</button>
@@ -157,10 +158,12 @@ body.light-mode #modeToggle, body.light-mode #backToTop, body.light-mode .btn{ba
 </div>
 
 <script>
+// 三語翻譯及功能
 document.addEventListener("DOMContentLoaded",function(){
 const translations={
 "zh-HK":{
-"intro-title":"公司簡介","intro-text":"我們是一家專注於行動應用與遊戲開發的科技公司，致力於為全球用戶提供創新與高品質的數位娛樂體驗。",
+"intro-title":"公司簡介",
+"intro-text":"我們是一家專注於行動應用與遊戲開發的科技公司，致力於為全球用戶提供創新與高品質的數位娛樂體驗。",
 "services-title":"關於我們 · 服務項目",
 "svc1-title":"行動應用開發","svc1-desc":"專業開發 iOS / Android 應用，支援 Swift、Kotlin、Unity 多平台架構。",
 "svc2-title":"網站與系統建設","svc2-desc":"企業網站、後台管理系統與雲端部署整合，安全穩定。",
@@ -168,7 +171,8 @@ const translations={
 "svc4-title":"數據分析與優化","svc4-desc":"透過數據分析與 A/B 測試提升產品效率與用戶體驗。",
 "svc5-title":"遊戲與廣告整合","svc5-desc":"提供遊戲開發與穿山甲、Google AdMob 等廣告 SDK 接入服務。",
 "svc6-title":"電子商務","svc6-desc":"主要運營網店以及全球代購服務，為用戶提供便捷購物體驗。",
-"contact-title":"聯絡我們","callText":"撥打電話","waText":"WhatsApp 聯絡我們","carText":"Carousell 商店",
+"contact-title":"聯絡我們",
+"callText":"撥打電話","waText":"WhatsApp 聯絡我們","carText":"Carousell 商店",
 "contact-address":"📍 地址：香港",
 "policy-btn":"隱私政策 & 使用條款","privacy-title":"隱私政策","privacy-text":"本公司尊重您的隱私，承諾保護所有用戶資料。當您使用我們的應用程式或網站時，我們可能會收集必要的資訊，例如電子郵件、使用偏好或系統資訊，用於提供更好的服務和改進產品。我們不會將個人資料出售或共享給第三方，除非法律要求或您明確同意。",
 "terms-title":"使用條款","term1":"不得使用本服務進行非法活動。","term2":"尊重知識產權，不得未經授權使用或傳播本公司內容。","term3":"本公司保留隨時修改或終止服務的權利。",
@@ -244,7 +248,9 @@ policyClose.addEventListener("click",()=>{policyModal.style.display="none";});
 const backBtn=document.getElementById("backToTop");
 window.addEventListener("scroll",()=>{backBtn.style.display=window.scrollY>200?"inline-block":"none";});
 backBtn.addEventListener("click",()=>{window.scrollTo({top:0,behavior:"smooth"});});
+
 });
 </script>
+
 </body>
 </html>
