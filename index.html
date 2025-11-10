@@ -20,12 +20,11 @@ footer { text-align:center; padding:30px 20px; font-size:14px; transition: backg
 .lang-btn { margin:0 5px; padding:6px 12px; cursor:pointer; border:none; border-radius:4px; font-weight:bold; transition: background-color 0.3s, color 0.3s;}
 .lang-btn.active { background-color:#4fc3f7; color:#121212; }
 
-/* Banner */
-.banner-container { width:100%; }
+/* Banner 與公司名字置中 */
+.banner-container { width: 100%; text-align: center; }
 .banner-container .banner { width:100%; height:auto; display:block; border-radius:8px; margin-bottom:15px; }
-
-/* 公司名字 */
-#company-name-en, #company-name-zh { font-weight:bold; font-size:18px; margin:5px 0; }
+#company-name-en,
+#company-name-zh { display: block; text-align: center; margin: 5px auto; font-weight: bold; font-size: 18px; }
 
 /* 服務項目 */
 .services-grid { display:flex; flex-wrap:wrap; justify-content:center; gap:25px; margin-top:30px;}
@@ -213,7 +212,7 @@ const translations = {
     "contact-wa":"💬 WhatsApp 联系我们","contact-email":"✉️ contact-yufunghk@menfo.men",
     "contact-address":"📍 地址：香港","contact-carousell":"🛒 Carousell 商店",
     "company-name-en":"YUFUNG (HK) NETWORK TECHNOLOGY CO., LIMITED",
-    "company-name-zh":"宇锋（香港）网络科技有限公司",
+    "company-name-zh":"宇鋒（香港）网络科技有限公司",
     "policy-btn":"隐私政策 & 使用条款","policy-title":"隐私政策 & 使用条款","privacy-title":"隐私政策","privacy-text":"本公司尊重您的隐私，承诺保护所有用户资料。使用我们的应用或网站时，我们可能会收集必要信息，例如电子邮件、使用偏好或系统信息，用于提供更好的服务和产品改进。我们不会将个人资料出售或共享给第三方，除非法律要求或您明确同意。","terms-title":"使用条款"
   },
   "en": {
@@ -221,7 +220,7 @@ const translations = {
     "services-title":"About Us · Services",
     "svc1-title":"Mobile App Development","svc1-desc":"Professional development for iOS / Android apps, supporting Swift, Kotlin, and Unity multi-platform frameworks.",
     "svc2-title":"Website & System Development","svc2-desc":"Enterprise websites, backend systems, and cloud deployment integration with security and stability.",
-    "svc3-title":"Cloud Technical Support","svc3-desc":"Support for AWS, Google Cloud, Alibaba Cloud, and other environments for configuration and maintenance.",
+    "svc3-title":"Cloud Technology Support","svc3-desc":"Support for AWS, Google Cloud, Alibaba Cloud environments configuration and maintenance.",
     "svc4-title":"Data Analysis & Optimization","svc4-desc":"Improve product efficiency and user experience through data analysis and A/B testing.",
     "svc5-title":"Game & Ads Integration","svc5-desc":"Provide game development and integration with ad SDKs like Pangle and Google AdMob.",
     "svc6-title":"E-Commerce","svc6-desc":"Operate online stores and global purchasing services, providing users with a convenient shopping experience.",
